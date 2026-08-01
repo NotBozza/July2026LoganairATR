@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATR72-600 Type Rating Quiz - Complete</title>
+    <style>
+        :root {
+            --primary-red: #ff3b3b;
+            --primary-blue: #0066cc;
+            --success: #28a745;
+            --danger: #dc3545;
+            --light-bg: #f8f9fa;
+            --border: #dee2e6;
+            --text-main: #212529;
+            --text-secondary: #6c757d;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+        
+        /* Login Screen */
+        .login-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .login-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            animation: slideUp 0.5s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .login-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .login-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+        
+        .login-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+        
+        .username-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .username-btn {
+            padding: 20px;
+            border: 2px solid var(--border);
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--text-main);
+        }
+        
+        .username-btn:hover {
+            border-color: var(--primary-red);
+            background: linear-gradient(135deg, rgba(255, 59, 59, 0.05) 0%, rgba(255, 82, 82, 0.05) 100%);
+            transform: translateY(-2px);
+        }
+        
+        .username-btn.selected {
+            border-color: var(--primary-red);
+            background: linear-gradient(135deg, var(--primary-red) 0%, #ff5252 100%);
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 59, 59, 0.4);
+        }
+        
+        .start-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, #ff5252 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .start-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 59, 59, 0.4);
+        }
+        
+        .start-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .reset-btn-login {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .reset-btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 107, 107, 0.4);
+        }
+        
+        .reset-btn-login:active {
+            transform: translateY(0);
+        }
+        
+        .user-stats-box {
+            background: var(--light-bg);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 24px;
+            text-align: left;
+        }
+        
+        .user-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .user-stat:last-child {
+            border-bottom: none;
+        }
+        
+        .user-stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .user-stat-value {
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+        
+        .logout-section {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .logout-btn {
+            font-size: 14px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            text-decoration: underline;
+            background: none;
+            border: none;
+            transition: color 0.2s;
+        }
+        
+        .logout-btn:hover {
+            color: var(--primary-red);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px 40px;
+            margin-bottom: 30px;
+        }
+        
+        header .header-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .current-user {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        
+        .logout-header-btn {
+            padding: 8px 16px;
+            background: var(--light-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: all 0.2s;
+        }
+        
+        .logout-header-btn:hover {
+            background: var(--primary-red);
+            color: white;
+            border-color: var(--primary-red);
+        }
+        
+        .logo .icon {
+            font-size: 28px;
+        }
+        
+        .header-stats {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+        }
+        
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+        }
+        
+        /* Quiz Card */
+        .quiz-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            overflow: hidden;
+        }
+        
+        /* Progress Bar */
+        .progress-section {
+            background: linear-gradient(90deg, var(--light-bg) 0%, white 100%);
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .progress-info-left {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        
+        .progress-counter {
+            font-size: 12px;
+            color: var(--text-secondary);
+            background: var(--light-bg);
+            padding: 4px 12px;
+            border-radius: 16px;
+        }
+        
+        .progress-bar-container {
+            width: 100%;
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-red));
+            width: 0%;
+            transition: width 0.4s ease;
+            border-radius: 3px;
+        }
+        
+        /* Question Navigation - Horizontal scroll */
+        .nav-section {
+            padding: 20px 30px;
+            background: var(--light-bg);
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        
+        .nav-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+        
+        .question-nav {
+            display: flex;
+            gap: 8px;
+            min-width: min-content;
+            padding: 4px 0;
+        }
+        
+        .nav-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            color: var(--text-secondary);
+        }
+        
+        .nav-circle:hover {
+            border-color: var(--primary-red);
+            transform: scale(1.05);
+        }
+        
+        .nav-circle.active {
+            border-color: var(--primary-red);
+            background: var(--primary-red);
+            color: white;
+            box-shadow: 0 2px 8px rgba(255, 59, 59, 0.3);
+        }
+        
+        .nav-circle.answered-correct {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+        
+        .nav-circle.answered-wrong {
+            background: var(--danger);
+            border-color: var(--danger);
+            color: white;
+        }
+        
+        /* Question Content */
+        .question-section {
+            padding: 40px;
+        }
+        
+        .question-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .question-number {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        
+        /* Options */
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 30px;
+        }
+        
+        .options-container.disabled .option {
+            pointer-events: none;
+        }
+        
+        .option {
+            padding: 16px 18px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--text-main);
+        }
+        
+        .option:hover:not(.correct):not(.incorrect) {
+            border-color: var(--primary-blue);
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, rgba(102, 126, 234, 0.05) 100%);
+        }
+        
+        .option.correct {
+            border-color: var(--success);
+            background: linear-gradient(135deg, rgba(40, 167, 69, 0.08) 0%, rgba(40, 167, 69, 0.04) 100%);
+            color: var(--text-main);
+            font-weight: 600;
+        }
+        
+        .option.correct::before {
+            content: "✓ ";
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .option.incorrect {
+            border-color: var(--danger);
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.08) 0%, rgba(220, 53, 69, 0.04) 100%);
+            color: var(--text-main);
+        }
+        
+        .option.incorrect::before {
+            content: "✗ ";
+            color: var(--danger);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        /* Navigation Buttons */
+        .button-section {
+            padding: 30px 40px;
+            background: var(--light-bg);
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 12px;
+            justify-content: space-between;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.3px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-red) 0%, #ff5252 100%);
+            color: white;
+            flex: 1;
+            max-width: 150px;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 59, 59, 0.4);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-secondary {
+            background: white;
+            border: 2px solid var(--border);
+            color: var(--text-main);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+        }
+        
+        /* Completion Screen */
+        .completion-screen {
+            display: none;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .completion-screen.show {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .completion-icon {
+            font-size: 72px;
+            margin-bottom: 20px;
+        }
+        
+        .completion-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+        
+        .completion-text {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .score-display {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-bottom: 8px;
+        }
+        
+        .score-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .reset-btn {
+            padding: 14px 32px;
+            font-size: 15px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, #ff5252 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 59, 59, 0.4);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .header-stats {
+                width: 100%;
+                justify-content: space-around;
+            }
+            
+            .question-section {
+                padding: 20px;
+            }
+            
+            .button-section {
+                padding: 20px;
+                flex-direction: column;
+            }
+            
+            .btn-primary {
+                max-width: 100%;
+            }
+            
+            .progress-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="login-screen">
+        <div class="login-card">
+            <div class="login-icon">✈️</div>
+            <h1 class="login-title">ATR72-600</h1>
+            <p class="login-subtitle">Type Rating Quiz<br>Select your profile to continue</p>
+            
+            <div class="username-grid" id="username-grid">
+                <button class="username-btn" onclick="selectUser('Ash')">👨‍✈️ Ash</button>
+                <button class="username-btn" onclick="selectUser('Anu')">👨‍✈️ Anu</button>
+                <button class="username-btn" onclick="selectUser('Michael')">👨‍✈️ Michael</button>
+                <button class="username-btn" onclick="selectUser('Jayden')">👨‍✈️ Jayden</button>
+            </div>
+            
+            <div id="user-stats-box" class="user-stats-box hidden">
+                <div class="user-stat">
+                    <span class="user-stat-label">Questions Answered:</span>
+                    <span class="user-stat-value" id="login-answered">0</span>
+                </div>
+                <div class="user-stat">
+                    <span class="user-stat-label">Correct Answers:</span>
+                    <span class="user-stat-value" id="login-correct">0</span>
+                </div>
+                <div class="user-stat">
+                    <span class="user-stat-label">Current Score:</span>
+                    <span class="user-stat-value" id="login-score">0%</span>
+                </div>
+            </div>
+            
+            <button class="start-btn" id="start-btn" onclick="startQuiz()" disabled>Start Quiz</button>
+            
+            <button class="reset-btn-login" id="reset-btn-login" onclick="resetUserProgress()" style="display: none;">🔄 Reset Progress</button>
+            
+            <div class="logout-section" id="logout-section" style="display: none;">
+                <button class="logout-btn" onclick="backToLogin()">← Choose Different User</button>
+            </div>
+        </div>
+    </div>
+    
+    <header id="header" style="display: none;">
+        <div class="header-content">
+            <div class="logo">
+                <span class="icon">✈️</span>
+                ATR72-600 Type Rating
+            </div>
+            <div class="user-info" id="user-info" style="display: none;">
+                <div class="current-user">👤 <span id="header-username">User</span></div>
+                <button class="logout-header-btn" onclick="resetProgressFromQuiz()">🔄 Reset</button>
+                <button class="logout-header-btn" onclick="logout()">Logout</button>
+            </div>
+            <div class="header-stats">
+                <div class="stat">
+                    <span class="stat-label">Progress</span>
+                    <span class="stat-value"><span id="answered-count">0</span>/465</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Score</span>
+                    <span class="stat-value" id="score-header">0%</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" id="quiz-container" style="display: none;">
+        <div class="quiz-card">
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-info">
+                    <div class="progress-info-left">Comprehensive Quiz: Aircraft Systems & Flight Procedures</div>
+                    <div class="progress-counter" id="question-counter">1 / 465</div>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+            </div>
+
+            <!-- Navigation Section -->
+            <div class="nav-section">
+                <div class="nav-label">Jump to Question</div>
+                <div class="question-nav" id="nav-circles"></div>
+            </div>
+
+            <!-- Question Section -->
+            <div id="question-content">
+                <div class="question-section">
+                    <div class="question-number" id="question-number"></div>
+                    <div class="question-title" id="question-text"></div>
+                    <div class="options-container" id="options-container"></div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="button-section">
+                    <button class="btn btn-secondary" onclick="prevQuestion()">← Previous</button>
+                    <button class="btn btn-primary" onclick="nextQuestion()" id="next-btn">Next →</button>
+                </div>
+            </div>
+
+            <!-- Completion Screen -->
+            <div class="completion-screen" id="completion-screen">
+                <div class="completion-icon">🎉</div>
+                <div class="completion-title">Quiz Complete!</div>
+                <div class="completion-text">You've finished all 465 questions</div>
+                <div class="score-display" id="final-score">0%</div>
+                <div class="score-label">Correct Answers</div>
+                <button class="reset-btn" onclick="resetQuiz()">Start Over</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // User Management
+        const USERS = ['Ash', 'Anu', 'Michael', 'Jayden'];
+        let currentUser = null;
+        
+        function selectUser(username) {
+            currentUser = username;
+            const buttons = document.querySelectorAll('.username-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('selected');
+                if (btn.textContent.includes(username)) {
+                    btn.classList.add('selected');
+                }
+            });
+            
+            // Show user stats if they have progress
+            const userProgress = getUserProgress(username);
+            const statsBox = document.getElementById('user-stats-box');
+            const resetBtn = document.getElementById('reset-btn-login');
+            
+            if (userProgress && userProgress.answered > 0) {
+                const correctCount = userProgress.correct || 0;
+                const score = Math.round((correctCount / userProgress.answered) * 100);
+                document.getElementById('login-answered').innerText = userProgress.answered;
+                document.getElementById('login-correct').innerText = correctCount;
+                document.getElementById('login-score').innerText = score + '%';
+                statsBox.classList.remove('hidden');
+                resetBtn.style.display = 'block';
+            } else {
+                statsBox.classList.add('hidden');
+                resetBtn.style.display = 'none';
+            }
+            
+            document.getElementById('start-btn').disabled = false;
+            document.getElementById('logout-section').style.display = 'block';
+        }
+        
+        function resetUserProgress() {
+            if (!currentUser) return;
+            
+            const confirmReset = confirm(`Are you sure you want to reset all progress for ${currentUser}?\n\nThis action cannot be undone.`);
+            if (!confirmReset) return;
+            
+            // Delete from localStorage
+            localStorage.removeItem(`atr72_${currentUser}`);
+            
+            // Reset internal arrays
+            answeredQuestions = new Array(questions.length).fill(false);
+            correctAnswersTrack = new Array(questions.length).fill(null);
+            currentQuestion = 0;
+            
+            // Update UI
+            document.getElementById('user-stats-box').classList.add('hidden');
+            document.getElementById('reset-btn-login').style.display = 'none';
+            
+            // Show confirmation
+            alert(`✅ Progress completely reset for ${currentUser}!\n\nYou can now start fresh.`);
+        }
+        
+        function startQuiz() {
+            if (!currentUser) return;
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('header').style.display = 'block';
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('user-info').style.display = 'flex';
+            document.getElementById('header-username').innerText = currentUser;
+            loadUserProgress();
+            loadQuestion();
+        }
+        
+        function resetProgressFromQuiz() {
+            if (!currentUser) return;
+            
+            const confirmReset = confirm(`Are you sure you want to reset all progress for ${currentUser}?\n\nYou will return to the login screen.`);
+            if (!confirmReset) return;
+            
+            // Delete from localStorage
+            localStorage.removeItem(`atr72_${currentUser}`);
+            
+            // Reset internal arrays BEFORE clearing currentUser
+            answeredQuestions = new Array(questions.length).fill(false);
+            correctAnswersTrack = new Array(questions.length).fill(null);
+            currentQuestion = 0;
+            
+            // Save username before clearing
+            const resetUsername = currentUser;
+            currentUser = null;
+            
+            // Go back to login
+            document.getElementById('login-screen').classList.remove('hidden');
+            document.getElementById('header').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('user-info').style.display = 'none';
+            document.getElementById('question-content').style.display = 'block';
+            document.getElementById('completion-screen').classList.remove('show');
+            
+            // Reset login screen UI
+            document.querySelectorAll('.username-btn').forEach(btn => btn.classList.remove('selected'));
+            document.getElementById('user-stats-box').classList.add('hidden');
+            document.getElementById('start-btn').disabled = true;
+            document.getElementById('logout-section').style.display = 'none';
+            
+            // Show confirmation
+            alert(`✅ Progress completely reset for ${resetUsername}!\n\nYou can now start fresh.`);
+        }
+        
+        function logout() {
+            // Only save if there's an active user (don't re-save after reset)
+            if (currentUser) {
+                saveUserProgress();
+            }
+            currentUser = null;
+            document.getElementById('login-screen').classList.remove('hidden');
+            document.getElementById('header').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('user-info').style.display = 'none';
+            document.getElementById('question-content').style.display = 'block';
+            document.getElementById('completion-screen').classList.remove('show');
+            resetQuizState();
+        }
+        
+        function backToLogin() {
+            currentUser = null;
+            document.querySelectorAll('.username-btn').forEach(btn => btn.classList.remove('selected'));
+            document.getElementById('user-stats-box').classList.add('hidden');
+            document.getElementById('start-btn').disabled = true;
+            document.getElementById('logout-section').style.display = 'none';
+        }
+        
+        function getUserProgress(username) {
+            const data = localStorage.getItem(`atr72_${username}`);
+            return data ? JSON.parse(data) : null;
+        }
+        
+        function saveUserProgress() {
+            if (!currentUser) return;
+            const correctCount = correctAnswersTrack.filter(x => x === true).length;
+            const progress = {
+                answered: answeredQuestions.filter(Boolean).length,
+                correct: correctCount,
+                currentQuestion: currentQuestion,
+                answers: correctAnswersTrack,
+                completed: answeredQuestions
+            };
+            localStorage.setItem(`atr72_${currentUser}`, JSON.stringify(progress));
+        }
+        
+        function loadUserProgress() {
+            const progress = getUserProgress(currentUser);
+            if (progress) {
+                currentQuestion = progress.currentQuestion || 0;
+                correctAnswersTrack = progress.answers || new Array(questions.length).fill(null);
+                answeredQuestions = progress.completed || new Array(questions.length).fill(false);
+            }
+        }
+        
+        function resetQuizState() {
+            currentQuestion = 0;
+            answeredQuestions = new Array(questions.length).fill(false);
+            correctAnswersTrack = new Array(questions.length).fill(null);
+        }
+        
+        const questions = [
+            // Page 1
+            { q: "What is the minimum theoretical pavement width for a 180-degree turn for the ATR72?", opts: ["18.5 m", "19.4 m", "20.2 m", "21.0 m"], ans: 1 },
+            { q: "What is the wingspan of the ATR72?", opts: ["25.05 m", "26.20 m", "27.05 m", "28.15 m"], ans: 2 },
+            { q: "What is the clearance between the propeller tip and the ground at operating empty weight?", opts: ["0.95 m", "1.10 m", "1.21 m", "1.35 m"], ans: 2 },
+            { q: "What should be done regarding the tail bumper skid shoe?", opts: ["Replace annually", "Inspect the skid shoe at each walk around; if stripped, check the red indicator; if wear is evident, maintenance action is required.", "Never inspect", "Only check before long flights"], ans: 1 },
+            { q: "What does the cockpit door locking system buzzer indicate?", opts: ["Intrusion attempt", "It sounds for a maximum of 2 seconds to indicate a routine access request has been made.", "Door malfunction", "Unlock failure"], ans: 1 },
+            { q: "What are the cockpit emergency exits?", opts: ["Cabin doors only", "Two sliding windows, a cockpit communication hatch, one plug type hatch in the cockpit roof, and two D.V. windows.", "Forward door only", "Emergency slides"], ans: 1 },
+            { q: "How is an unlocked cargo door displayed on the SD CABIN page on the MFD?", opts: ["Green indication", "As an amber door name with a solid amber rectangle.", "White square", "Red flashing"], ans: 1 },
+            { q: "What is the maximum crosswind component for operating the cargo door?", opts: ["30 kt", "35 kt", "45 kt", "50 kt"], ans: 2 },
+            { q: "What is the maximum takeoff weight of the ATR72-600?", opts: ["20,000 kg", "21,500 kg", "22,800 kg", "24,000 kg"], ans: 2 },
+            { q: "What is the maximum operating speed not to be intentionally exceeded?", opts: ["0.48 M", "0.58 M", "0.68 M", "0.78 M"], ans: 1 },
+            { q: "What is the flaps 15 limiting speed?", opts: ["150 kt", "165 kt", "185 kt", "200 kt"], ans: 2 },
+            { q: "What are the ATR72 takeoff and landing tailwind limits?", opts: ["5 kt", "10 kt", "15 kt", "20 kt"], ans: 1 },
+            { q: "What is the minimum runway width for the ATR72?", opts: ["20 m", "25 m", "30 m", "35 m"], ans: 2 },
+            { q: "What is the maximum fuel imbalance allowed?", opts: ["100 kg", "150 kg", "200 kg", "250 kg"], ans: 2 },
+            { q: "What is the minimum height for autopilot use on a Cat 1 approach?", opts: ["50 ft", "75 ft", "100 ft", "150 ft"], ans: 2 },
+
+            // Page 2
+            { q: "How are emergency cabin lights supplied?", opts: ["From main battery", "By integral batteries charged from the DC standby bus with a 15 min capacity.", "From emergency generator", "From APU"], ans: 1 },
+            { q: "What is the maximum landing weight of the ATR72-600 series?", opts: ["21,500 kg", "22,000 kg", "22,800 kg", "23,500 kg"], ans: 2 },
+            { q: "What is the maximum zero fuel weight of the ATR72-600 series?", opts: ["21,000 kg", "21,500 kg", "22,000 kg", "22,350 kg"], ans: 3 },
+            { q: "What is the maximum landing gear operating speed (VLO) of the ATR72-600?", opts: ["160 kts", "170 kts", "185 kts", "200 kts"], ans: 2 },
+            { q: "What is the MFC self-test sequence observed during power up?", opts: ["All 4 flash once", "MFC 1A & MFC 2A flash 5 times, then MFC 1B & MFC 2B flash 5 times.", "Alternating sequence", "No self-test"], ans: 1 },
+            { q: "Where are the flight management system and radio management system hosted?", opts: ["Separate units", "On display units 1 & 2.", "In the FMS only", "In avionics bay"], ans: 1 },
+            { q: "How does the alerting window display failures and checklists in the event of multiple failures?", opts: ["Random order", "In order of priority.", "Oldest first", "Alphabetical"], ans: 1 },
+            { q: "When is the AFTER LANDING checklist triggered?", opts: ["At 100 knots", "After touchdown once airspeed gets below 60 knots.", "Upon gear extension", "At 50 knots"], ans: 1 },
+            { q: "What is the Master Caution system typically associated with?", opts: ["Emergency situations", "An abnormal situation.", "Normal operations", "Configuration changes"], ans: 1 },
+            { q: "How is the Master Warning system typically identified?", opts: ["Amber light", "With an emergency situation.", "Red indication", "Flashing lights"], ans: 1 },
+            { q: "How can the Master Warning or Master Caution be extinguished?", opts: ["Time out automatically", "By pressing the corresponding light or performing the necessary corrective action.", "By resetting systems", "Manual override only"], ans: 1 },
+            { q: "When do annunciator lights test run?", opts: ["At startup", "As soon as the ANN LT switch is in the test position.", "During preflight", "On demand"], ans: 1 },
+            { q: "What does the T/O CONFIG test check before takeoff?", opts: ["Fuel quantity", "PWR MGT selector in TO position, Flaps 15, Pitch Trim in green sector.", "Engine parameters", "Flight surfaces"], ans: 1 },
+            { q: "What is the function of TLU in LO SPD?", opts: ["Fuel transfer", "TLU is in LO SPD, indicating a low speed condition for the aircraft.", "Trim control", "Landing gear warning"], ans: 1 },
+
+            // Page 3
+            { q: "What happens when the gust lock and its actuators disagree?", opts: ["Autopilot disconnects", "There is no disagreement between the gust lock and its actuators.", "Warning is issued", "Automatic unlock"], ans: 1 },
+            { q: "What cancels the TO INHIBIT function automatically?", opts: ["After 2 minutes", "The TO INHIBIT function is cancelled automatically when the first leg of the main landing gear unlocks before retraction.", "Manual selection", "During climb"], ans: 1 },
+            { q: "What does pushing an illuminated Red Master Warning (MW) Light cancel?", opts: ["All warnings", "Pushing the Red Master Warning Light cancels the MW light and any associated aural warning.", "Only aural warning", "Resets systems"], ans: 1 },
+            { q: "What occurs when the 'Emergency Audio Cancel' switch is used?", opts: ["Stops all warnings", "The specific alert is silenced, but it will occur again when triggered.", "Disables audio system", "Cancels procedure"], ans: 1 },
+            { q: "What is modified when at least one horn anti-icing push button is selected?", opts: ["Engine thrust", "The stall alert threshold and stick pusher threshold are modified.", "Hydraulic pressure", "Flight mode"], ans: 1 },
+            { q: "When is the stick-pusher inhibited?", opts: ["During climb", "The stick-pusher is inhibited on the ground and as long as TO INHIBIT is on.", "In descent", "Never"], ans: 1 },
+            { q: "What is the stall aural warning called?", opts: ["Chirp", "The stall aural warning is referred to as 'Clacker'.", "Bell", "Horn"], ans: 1 },
+            { q: "When does stick-pusher activation occur?", opts: ["At stall warning", "Stick-pusher activation occurs after stall warning advisory.", "Before stall warning", "At low altitude"], ans: 1 },
+            { q: "What does the icing Angle of Attack (AOA) light reduce?", opts: ["Engine power", "It reduces the AOA threshold for stall warning and stick-shaker.", "Altitude", "Speed"], ans: 1 },
+            { q: "What happens when the stick pusher test is activated?", opts: ["System resets", "Stall cricket and stick shaker activates, followed by GPWS fault light and stick pusher indicators.", "Warnings cancel", "Nothing visible"], ans: 1 },
+            { q: "How can a checklist be found manually if not displayed automatically?", opts: ["Menu search", "By pressing the PROC MENU button or the RCL button.", "Scroll display", "Radio call"], ans: 1 },
+            { q: "What does the pneumatic system supply air for?", opts: ["Cabin cooling only", "The pneumatic system supplies air for air conditioning, pressurization, pneumatic de-icing, and engine starter.", "Hydraulic backup", "Propeller control"], ans: 1 },
+            { q: "How are the air conditioning air bleed valves controlled?", opts: ["Pneumatically only", "The air conditioning air bleed valves are electrically controlled and pneumatically operated.", "Manually", "Automatically fixed"], ans: 1 },
+            { q: "How is air conditioning bleed air supplied?", opts: ["From APU only", "Generally supplied by engine LP stage, but switches to HP stage if LP is insufficient.", "From external", "From cargo"], ans: 1 },
+
+            // Page 4
+            { q: "What happens with the bleed push button selected ON in absence of air pressure?", opts: ["System activates", "The bleed valve closes automatically.", "Stays open", "Cycles"], ans: 1 },
+            { q: "What is the normal procedure to condition the cabin in Hotel mode?", opts: ["Both packs", "Right engine air bleed and both pack valves via automatically opened cross feed bleed valve.", "Left engine only", "APU only"], ans: 1 },
+            { q: "When does the cross feed bleed valve open automatically?", opts: ["During climb", "On ground when bleed air is supplied from a single engine.", "During descent", "After takeoff"], ans: 1 },
+            { q: "Where is a Kevlar envelope installed for rapid leak sensing?", opts: ["Fuselage only", "Around the major part of the high temperature bleed duct in the wing leading edge and fuselage.", "Engine only", "Cargo area"], ans: 1 },
+            { q: "What causes an overheat condition downstream of the engine bleed air shut-off valve?", opts: ["Blockage", "It causes actuation of the OVHT alert and closure of the engine bleed air valve.", "Low pressure", "Valve failure"], ans: 1 },
+            { q: "When does the engine bleed air valve close automatically?", opts: ["At altitude", "In cases of overheat, leak, or lack of pressure.", "During cruise", "At startup"], ans: 1 },
+            { q: "What happens after illumination of OVHT or LEAK lights?", opts: ["Immediate shutdown", "For OVHT, recovery is possible only after system cooling; for LEAK, recovery is not possible.", "Manual reset", "Automatic reset"], ans: 1 },
+            { q: "When does the bleed fault light illuminate amber?", opts: ["At startup", "When there is a disagreement between the valve and the selected position or in case of OVHT or LEAK.", "During flight", "Random"], ans: 1 },
+            { q: "How many outflow valves are there in the pressurization system?", opts: ["One", "There are two electro pneumatic outflow valves.", "Three", "Four"], ans: 1 },
+            { q: "How does the pneumatic outflow valve operate?", opts: ["Same as electrical", "It operates independently of the electro pneumatic outflow valve.", "In sync", "Alternately"], ans: 1 },
+            { q: "What reference does the digital controller use in normal operation?", opts: ["GPS data", "The aircraft static air pressure generated by ADC 1 and CM 1 altimeter Baro setting.", "Radio altimeter", "Manual input"], ans: 1 },
+            { q: "What does the amber fault light in the MAN push button indicate?", opts: ["Low pressure", "It indicates a fault in the manual pressurisation system.", "High altitude", "Valve stuck"], ans: 1 },
+            { q: "What does the landing elevation indication display alternatively?", opts: ["Temperature", "It displays 18800 and -8800.", "Wind", "Time"], ans: 1 },
+            { q: "What happens to the test in flight regarding the landing elevation indication?", opts: ["Automatic test", "The test is inhibited in flight.", "Runs continuous", "On demand"], ans: 1 },
+
+            // Page 5
+            { q: "What does the landing elevation indicator display when there is no input?", opts: ["Last value", "It displays all zeros.", "Error code", "Default value"], ans: 1 },
+            { q: "In which position should the MAN Rate knob be placed for automatic pressurisation control?", opts: ["Center", "It should be placed in the AUTO position.", "Neutral", "Stop"], ans: 1 },
+            { q: "What should be set in the AUTO PRESS panel before each flight?", opts: ["Zero", "The current QNH setting should be set.", "Maximum", "Minimum"], ans: 1 },
+            { q: "How high above takeoff elevation can the aircraft be operated without cancelling the 'automatic return' feature?", opts: ["2000 ft", "3500ft above takeoff elevation, or until landing gear is retracted, whichever is later.", "5000 ft", "No limit"], ans: 1 },
+            { q: "What is the maximum cabin rate of climb in AUTO mode, up to 20000ft?", opts: ["300 ft/min", "+550ft/min.", "700 ft/min", "900 ft/min"], ans: 1 },
+            { q: "What is the maximum cabin differential pressure?", opts: ["5.0 psi", "Positive 6.35psi, limited by a manometric capsule.", "8.0 psi", "10 psi"], ans: 1 },
+            { q: "What is the maximum cabin altitude with a differential pressure of 6psi?", opts: ["6000 ft", "7640 ft.", "8500 ft", "9500 ft"], ans: 1 },
+            { q: "How is the system protected against exceeding the maximum cabin differential pressure?", opts: ["Electronic limiter", "Both outflow valves incorporate a manometric capsule to hold the valve open sufficiently to prevent overpressure.", "Pressure relief", "Manual control"], ans: 1 },
+            { q: "What is the highest cabin rate of descent available in AUTO mode with the descent rate push button released?", opts: ["-200 ft/min", "-400ft/min.", "-600 ft/min", "-800 ft/min"], ans: 1 },
+            { q: "What is the highest cabin rate of descent available in AUTO mode with the descent rate push button selected (FAST)?", opts: ["-400 ft/min", "-600ft/min.", "-800 ft/min", "-1000 ft/min"], ans: 1 },
+            { q: "What is the use of the FAST push button?", opts: ["Accelerate climb", "It changes the maximum cabin rate of descent from -400ft/min to -550ft/min.", "Increase speed", "Emergency mode"], ans: 1 },
+            { q: "Before landing, what altitude is the cabin maintained at to avoid a pressure bump at touch-down?", opts: ["300 ft", "300ft below the selected landing elevation.", "500 ft", "1000 ft"], ans: 1 },
+            { q: "What is the cabin depressurization rate after landing?", opts: ["200 ft/min", "+400ft/min.", "600 ft/min", "800 ft/min"], ans: 1 },
+            { q: "In case of ADC 1 failure, what reference does the digital controller use for static air pressure?", opts: ["Manual", "ADC 2 and CM1 altimeter baro setting.", "Standby", "Default value"], ans: 1 },
+
+            // Page 6
+            { q: "What is the correct way to switch from automatic to manual operation?", opts: ["Button press", "Select MAN on the CABIN PRESS push button, turn the MAN RATE knob to the 9 o'clock position and operate the MAN RATE knob as required.", "Knob only", "Automatic change"], ans: 1 },
+            { q: "What is the highest cabin rate of descent and climb available in MAN mode?", opts: ["-1000 ft/min and +2000 ft/min", "-1500ft/min and +2500ft/min.", "-2000 ft/min and +3000 ft/min", "-500 ft/min and +1500 ft/min"], ans: 1 },
+            { q: "What is the correct way to switch from manual to automatic operation?", opts: ["Push button only", "Select AUTO on the CABIN PRESS push button and turn the MAN RATE knob smoothly to normal position.", "Automatic", "Manual sequence"], ans: 1 },
+            { q: "What happens in case of loss of electrical supply to the digital controller in AUTO mode?", opts: ["System resets", "Both outflow valves remain in the last position.", "Automatic close", "Emergency open"], ans: 1 },
+            { q: "At what cabin altitude is the FWS system activated?", opts: ["9000 ft", "11000ft.", "13000 ft", "15000 ft"], ans: 1 },
+            { q: "When is the DUMP function available?", opts: ["Always", "Only in AUTO press mode, if differential pressure is below 1psi.", "On ground", "In descent"], ans: 1 },
+            { q: "How many outflow valves are opened during DUMP?", opts: ["One", "Both outflow valves are opened.", "Neither", "Alternating"], ans: 1 },
+            { q: "What does the Delta P on the Multi-Function Display System indicate?", opts: ["Pressure change rate", "It indicates the current state of cabin pressure.", "Differential altitude", "Valve position"], ans: 1 },
+            { q: "What is the current state if the Pack valve is ON?", opts: ["Pressurizing", "The Pack valve is operational.", "Stanby", "Fault"], ans: 1 },
+            { q: "What does it mean if the temperature control status is manual?", opts: ["Automatic override", "The temperature control is being operated manually.", "System faulty", "Bypass active"], ans: 1 },
+            { q: "What does the recirculation fan status indicate if it is ON?", opts: ["Standby", "The recirculation fan is operational.", "Idle", "Faulty"], ans: 1 },
+            { q: "What is the normal operation of the ventilation panel in hotel mode?", opts: ["Both valves open", "In hotel mode normal operation, the ventilation panel can be configured with the OVBD valve closed and the underfloor valve opened.", "OVBD open", "Closed"], ans: 1 },
+            { q: "What is the purpose of the 'OVBD VALVE OVERRIDE CTL' switch?", opts: ["Emergency valve", "The switch can be used to accelerate cabin heating on the ground when in full closed position and to override the OVBD valve logic position.", "Pressure control", "Vent relief"], ans: 1 },
+            { q: "What happens when the number one engine start sequence is initiated?", opts: ["All systems activate", "The extract fan stops for 120 seconds to avoid pressure shocks, and the exhaust mode FAULT light illuminates.", "Fans speed up", "Nothing special"], ans: 1 },
+
+            // Page 7
+            { q: "What determines the OVBD valve position when the 'OVBD VALVE OVERRIDE CTL' switch is on AUTO?", opts: ["Manual setting", "The OVBD valve position is a function of the exhaust mode push button position and the aircraft condition (inflight or on ground, ENG 1 running or not).", "Fixed position", "Pressure dependent"], ans: 1 },
+            { q: "When should the Avionics vent system extract fan stop?", opts: ["Never", "The extract fan should stop for 120 seconds during the engine start sequence and when the OVBD valve is selected to EXHAUST MODE.", "During cruise", "On demand"], ans: 1 },
+            { q: "What is the normal position of the OVBD valve and underfloor valves with both engines running?", opts: ["Both open", "The normal position is OVBD fully closed and UNDERFLOOR fully open.", "Both closed", "Alternating"], ans: 1 },
+            { q: "Can you change the position of the OVBD valve control switch when the exhaust mode push button is selected to OVBD?", opts: ["Yes", "You cannot change the position of the valve.", "Sometimes", "Only partially"], ans: 1 },
+            { q: "What does it indicate when the exhaust mode fault push button is illuminated?", opts: ["Normal operation", "It indicates a disagreement between the OVBD valve position and the associated control, fan failure or over temperature, or a disagreement with the underfloor valve position.", "Power loss", "Test mode"], ans: 1 },
+            { q: "When should the exhaust mode push button be set to OVBD?", opts: ["During flight", "It should be set in case of fan extract failure on ground or in case of extract fan failure in flight.", "At startup", "Never"], ans: 1 },
+            { q: "In-flight, how can avionics ventilation be performed with an extract fan failure?", opts: ["Manual operation", "By selecting the OVBD exhaust mode push button, provided the OVBD valve is in the AUTO position.", "Impossible", "External air"], ans: 1 },
+            { q: "What is the state of the extract fan and valves when the exhaust mode push button is in OVBD position and control switch is in AUTO mode?", opts: ["All active", "The extract fan is off, the underfloor valve is closed, and the OVBD valve is partially open.", "All closed", "Cycling"], ans: 1 },
+            { q: "When does the ground mechanic horn sound due to the OVBD light illumination?", opts: ["At altitude", "The horn sounds on the ground when differential pressure is less than 1psi.", "During flight", "Never"], ans: 1 },
+            { q: "What causes the FAULT light to illuminate amber on the avionics vent panel?", opts: ["System test", "It illuminates when there is any disagreement between the valve and the switch, or when the OVBD valve is not fully open on ground.", "Normal operation", "Pressure change"], ans: 1 },
+            { q: "What is the maximum differential pressure allowed to select the OVBD valve to FULL CLOSED position?", opts: ["2 psi", "The maximum differential pressure allowed is 1psi.", "3 psi", "No limit"], ans: 1 },
+            { q: "What is the function of the air conditioning packs?", opts: ["Cooling only", "The packs are responsible for shut off, pressure control, and flow control.", "Heating only", "Air filtration"], ans: 1 },
+            { q: "What does the Packs push-button ON indicate?", opts: ["Packs active", "It indicates that the pack valve is opened if the opening conditions are met.", "Standby", "Fault"], ans: 1 },
+            { q: "Where are the air conditioning packs installed?", opts: ["Fuselage", "One pack is installed in each landing gear fairing.", "Wings", "Tail"], ans: 1 },
+
+            // Page 8
+            { q: "Which pack is the primary supplier of cockpit air?", opts: ["Pack 2", "Pack one is the primary supplier of cockpit air on the ground, while pack two is used in flight.", "Both equal", "Alternating"], ans: 1 },
+            { q: "What happens to excess air from the left pack?", opts: ["Returned to engine", "Excess air from the left pack is vented overboard.", "Pressurizes cabin", "Stored"], ans: 1 },
+            { q: "What is the electrical power supply for the left pack?", opts: ["DC BUS 1", "The electrical power supply for the left pack is ACW BUS 1.", "AC BUS 2", "Battery"], ans: 1 },
+            { q: "How are pack valves operated?", opts: ["Mechanically", "Pack valves are electrically operated and controlled.", "Manually", "Pneumatically"], ans: 1 },
+            { q: "How is airflow level controlled?", opts: ["Manual control", "Airflow level is controlled automatically according to bleed air pressure.", "Fixed setting", "By pilot"], ans: 1 },
+            { q: "What happens when the pack flow push button is selected and HIGH illuminates?", opts: ["Packs close", "The recirculation fans start if the RECIRC FAN push button is selected ON.", "Warning issued", "Test mode"], ans: 1 },
+            { q: "How is the temperature control valve controlled?", opts: ["Manual dial", "The temperature control valve is controlled in automatic mode by the electronic temperature controller.", "Automatic only", "External"], ans: 1 },
+            { q: "When are cooling fans running if the relative packs are not closed?", opts: ["Idle", "The cooling fans are running automatically at all times.", "Intermittent", "On demand"], ans: 1 },
+            { q: "What happens when the compartment temperature selector is in manual mode?", opts: ["Automatic override", "When in manual mode, the TEMP CONT VALVE is directly controlled by the COMP TEMP SELECTOR.", "System default", "Disabled"], ans: 1 },
+            { q: "What does the electronic temperature controller compute in AUTO mode?", opts: ["Average temp", "It computes the temperature control valve position based on zone temperature demand, duct temperature, and aircraft skin temperature.", "Engine temp", "Outside air"], ans: 1 },
+            { q: "When is the compartment temperature selector operative?", opts: ["Standby mode", "The compartment temperature selector is operative in both AUTO and MAN modes.", "Manual only", "During descent"], ans: 1 },
+            { q: "What happens when the TEMP SEL push button is in manual mode?", opts: ["Alarm sounds", "The overheat alarm is not inhibited.", "Disabled", "Test mode"], ans: 1 },
+            { q: "What does the compartment temperature indicator display?", opts: ["Outside temp", "It displays the compartment and duct temperature of the selected side.", "Engine temp", "Setting only"], ans: 1 },
+            { q: "What is the purpose of recirculation fans?", opts: ["Pressurization", "They are used to re-circulate part of the cabin air to increase the supply of fresh air.", "Cooling only", "Ventilation"], ans: 1 },
+
+            // Page 9
+            { q: "From where may the air conditioning system receive air on the ground?", opts: ["Engines only", "The air conditioning system may receive air from packs or a ground conditioning unit.", "APU only", "Vents"], ans: 1 },
+            { q: "What does a pack valve fault indicate?", opts: ["Normal operation", "It indicates that the actual valve position disagrees with the selected position or there is an overheat downstream of the compressor.", "Standby mode", "Test alert"], ans: 1 },
+            { q: "What occurs when bleed valves are selected on after take-off?", opts: ["Both open immediately", "Pack 1 valve opens immediately while pack 2 valve opens after a 6-second delay.", "Staggered close", "Cycling"], ans: 1 },
+            { q: "What happens if a pack valve is closed or inoperative?", opts: ["Cabin pressure lost", "The other pack supplies both compartments through the mixing chamber.", "Automatic switchover", "Warning only"], ans: 1 },
+            { q: "What occurs if the electrical supply to the pack valves is lost?", opts: ["Remains open", "The pack valves are spring-loaded closed.", "Cycles", "Stays in position"], ans: 1 },
+            { q: "What happens in case of pack overheat downstream of the compressor?", opts: ["Cycles on/off", "The pack valve on the faulty side closes.", "Warning issued", "Automatic reset"], ans: 1 },
+            { q: "What triggers the Temp selector OVHT caution?", opts: ["High cabin temp", "The duct temperature exceeds 204°C.", "High bleed temp", "External temp"], ans: 1 },
+            { q: "What does a recirculation fan 'fault' light indicate?", opts: ["Normal operation", "It indicates either the fan RPM is too low or the fan motor is overheating.", "Standby mode", "Cycling"], ans: 1 },
+            { q: "What functions does the automatic digital flight control system (AFCS) achieve?", opts: ["Navigation only", "It achieves autopilot, yaw damper functions, flight director function, and altitude alerting functions.", "Throttle control", "Trim only"], ans: 1 },
+            { q: "How can you check if the AFCS altitude capture mode is armed?", opts: ["Visual check", "By checking line 1 of the FMA displayed on the MFD.", "Listen for tone", "Manual test"], ans: 1 },
+            { q: "What is the main electrical supply for the AFCS component?", opts: ["AC power", "The main electrical supply is DC EMER and DC STBY mainly.", "Battery", "APU"], ans: 1 },
+            { q: "What are the common vertical modes operated by the AFCS?", opts: ["Altitude only", "The common vertical modes are IAS HOLD, VS HOLD, ALT CAPTURE, and ALT HOLD.", "Speed only", "Fixed modes"], ans: 1 },
+            { q: "Which lateral modes can be operated by the AFCS?", opts: ["Heading only", "The common lateral modes are HDG SEL, NAV, APP, and BC.", "Nav only", "Fixed modes"], ans: 1 },
+            { q: "Which flight director vertical modes have an armed phase?", opts: ["All modes", "The vertical modes ALT SEL, IAS, and VS HOLD have an armed phase.", "None", "Selected only"], ans: 1 },
+
+            // Page 10
+            { q: "What happens if ALT and GS vertical modes are armed simultaneously?", opts: ["Both active", "The one that first meets capture conditions becomes active.", "Error condition", "Last selected"], ans: 1 },
+            { q: "What does the GO AROUND mode do in the AFCS?", opts: ["Pitch up", "The GO AROUND mode switches the flight director bars to STBY.", "Apply thrust", "Retract gear"], ans: 1 },
+            { q: "What color indicates that an autopilot mode is ARMED?", opts: ["Green", "Amber indicates that an autopilot mode is ARMED.", "White", "Cyan"], ans: 1 },
+            { q: "What happens when the AP is engaged with no FD mode selected?", opts: ["Full control", "The autopilot will engage but may not provide optimal flight guidance.", "Standby mode", "Refuses to engage"], ans: 1 },
+            { q: "What does the autopilot (AP) maintain when engaged?", opts: ["Current altitude", "The AP maintains the present pitch attitude (up to 15°), roll (6° to 35°), or heading if the bank angle is below 6°.", "Descent rate", "Speed only"], ans: 1 },
+            { q: "What happens when the autopilot (AP) is engaged with an active flight director (FD) mode?", opts: ["FD disabled", "The AP follows the FD mode.", "Conflict alert", "Manual override"], ans: 1 },
+            { q: "What does touch control steering (TCS) allow?", opts: ["Full manual", "TCS allows temporary manual control of the aircraft without disengaging the active FD and/or AP mode.", "Disconnects AP", "Override only"], ans: 1 },
+            { q: "What action is required to engage the autopilot (AP) if both AP and yaw damper (YD) are off?", opts: ["AP first", "The YD push button must be selected first, then the AP push button.", "YD only", "Simultaneous"], ans: 1 },
+            { q: "What occurs if the YD push button is selected while the AP is on?", opts: ["Both engage", "The YD only disengages.", "Both disengage", "No change"], ans: 1 },
+            { q: "When is the YD function activated automatically?", opts: ["At altitude", "The YD function is activated automatically anytime the AP is engaged.", "Manual only", "Never"], ans: 1 },
+            { q: "What happens when the pitch wheel is actuated with the AP engaged in ALT HOLD mode?", opts: ["Mode cancelled", "A new altitude reference is set and will be acquired by the AP.", "Manual override", "Warning issued"], ans: 1 },
+            { q: "What happens if the HDG push button is selected again while the AP is on with FD engaged in HDG and ALT mode?", opts: ["Both active", "The vertical bar disappears from the EADI and the AP returns to basic mode on the roll axis only.", "Standby mode", "Error alert"], ans: 1 },
+            { q: "What happens if the STBY push button is selected while the AP is on with FD engaged in HDG and ALT modes?", opts: ["Partial disengage", "The horizontal and vertical bars disappear from the EADI, and the AP returns to basic mode on both axes.", "Mode locked", "Reset"], ans: 1 },
+            { q: "How can manual disengagement of the AP be achieved?", opts: ["Button hold", "Manual disengagement can be achieved by using the quick disconnect push button on the control wheel or the AP push button on the AFCS control panel.", "Automatic", "Time based"], ans: 1 },
+
+            // Page 11
+            { q: "What causes automatic disconnection of the AP?", opts: ["Time limit", "Automatic disconnection occurs when the engagement condition of the AP and/or YD is no longer met or there is a mismatch between the two pitch trims.", "Altitude reached", "Speed change"], ans: 1 },
+            { q: "What happens during the altitude capture phase if a new altitude is selected with the ALT selector?", opts: ["Immediate change", "This new altitude is memorized by the AFCS, but the aircraft remains at the first one.", "Current captured", "Automatic switch"], ans: 1 },
+            { q: "What is required for AFCS dual coupling to occur?", opts: ["Manual selection", "AFCS dual coupling occurs automatically when both ILS frequencies are selected and the LOC/GS track is obtained.", "Altitude sync", "Manual enable"], ans: 1 },
+            { q: "What happens when either go-around push button is activated during the go-around phase?", opts: ["Continues climb", "It disengages the AP and provides FD commands only to manually acquire and maintain the predetermined minimum safe altitude and present heading.", "Manual override", "Automatic level"], ans: 1 },
+            { q: "How is the go-around mode cancelled?", opts: ["Time out", "The go-around mode can be cancelled by selecting a new vertical mode or engaging the AP.", "Automatic", "Altitude based"], ans: 1 },
+            { q: "Who can communicate via aircraft interphone communications?", opts: ["Pilots only", "Aircraft interphone communications are facilitated between cockpit crew stations, cabin attendant stations, and ground crew stations.", "Crew only", "Flight attendants only"], ans: 1 },
+            { q: "Where are PTT selectors provided?", opts: ["Pedestal only", "PTT selectors are provided on both control column wheels and both steering control hand wheels.", "Overhead", "One location"], ans: 1 },
+            { q: "What does the ALTN Audio selector PUSH BUTTON do?", opts: ["Selects backup", "When selected, it connects the Captain directly to VHF 2.", "Enables intercom", "Mutes all"], ans: 1 },
+            { q: "What are the conditions for TCAS aural alerts?", opts: ["Always enabled", "TCAS aural alerts are inhibited below 600ft during climb and once established on an ILS.", "Above 1000 ft", "Manual only"], ans: 1 },
+            { q: "How can you tune the VHF-1 radio on the ATR72-600?", opts: ["Physical dial", "You can tune the VHF-1 radio via the RMS page on either FMS or via the VCP.", "One method only", "Standby only"], ans: 1 },
+            { q: "What should you do if you forget to enter the Flight ID for the Mode-S transponder during FMS setup?", opts: ["Ground entry", "You can enter this information via the RMS page of the FMS.", "Cannot change", "Restart system"], ans: 1 },
+            { q: "What powers the DC GND HDLG XFR BUS?", opts: ["Battery only", "The DC GND HDLG XFR BUS can be powered by HOT MAIN BAT BUS on the ground or in flight.", "External only", "APU"], ans: 1 },
+            { q: "What does BAT SW selector off mean when no engine is running?", opts: ["System active", "Batteries are isolated from their respective HOT BAT BUS(es).", "Standby mode", "Test mode"], ans: 1 },
+            { q: "What is the function of the refuel and de-fuel system?", opts: ["Pressurization", "It manages the refueling and defueling of the aircraft, including cargo door and cockpit/cabin entrance lighting.", "Cooling", "Power supply"], ans: 1 },
+
+            // Page 12
+            { q: "What happens when the BAT Switch is selected on with no engine running?", opts: ["Standby only", "It allows the complete DC and ACW systems supply for ground operation.", "Partial power", "Limited supply"], ans: 1 },
+            { q: "What is the normal voltage reading for a battery without load?", opts: ["20-24V", "25-28V.", "28-32V", "32-36V"], ans: 1 },
+            { q: "What are the capacities of the batteries in the ATR72-600?", opts: ["24V/30Ah and 24V/10Ah", "MAIN BAT 24V/43Ah and EMER BAT 24V/15Ah.", "24V/50Ah and 24V/20Ah", "24V/60Ah and 24V/25Ah"], ans: 1 },
+            { q: "How can the DC distribution system be powered when external power is available?", opts: ["Manual operation", "Select the EXT PWR push button.", "Automatic", "No selection needed"], ans: 1 },
+            { q: "How can the DC SVCE BUS be powered?", opts: ["External only", "In Hotel Mode, by selecting the DC GND SVCE push button on the cabin attendant panel and SVCE/UTLY BUS push button in the cockpit.", "Battery only", "Automatic"], ans: 1 },
+            { q: "How many BUS TIE CONTACTOR (BTC) are controlled by the MAIN ELEC PWR panel BTC push button?", opts: ["One", "Two, one between DC BUS 1 and DC BUS 2 and one between AC BUS 1 and AC BUS 2.", "Three", "Four"], ans: 1 },
+            { q: "What happens when DC EXT PWR is on and DC BTC is on ISOL?", opts: ["Automatic tie", "DC BUS 1 and DC BUS 2 are isolated from EXT PWR.", "Partial isolation", "Connection reset"], ans: 1 },
+            { q: "When is the DC starter GEN functioning as a starter during a battery start?", opts: ["Always", "It is electrically supplied by the HOT MAIN BAT BUS and controlled from the DC ESS BUS.", "On demand", "Never"], ans: 1 },
+            { q: "What is the function of the EMER BAT during engine start?", opts: ["Standby power", "It provides backup starter power if the MAIN BAT is weak.", "Continuous supply", "Load sharing"], ans: 1 },
+            { q: "How many power sources can a DC starter GEN use when functioning as a starter?", opts: ["Three", "MAIN BAT or EXT DC PWR only.", "One", "Multiple"], ans: 1 },
+            { q: "At what percentage NH does the starter GEN operate in GEN mode after starting the engine?", opts: ["25% NH", "35% NH.", "45% NH", "55% NH"], ans: 1 },
+            { q: "What is the normal voltage of the DC GENs?", opts: ["24V", "28V.", "32V", "36V"], ans: 1 },
+            { q: "What priority does DC EXT PWR have when engines are running?", opts: ["Primary", "DC EXT PWR has no priority over ENG DC GEN.", "Secondary", "Shared"], ans: 1 },
+            { q: "How is the constant AC PWR frequency obtained?", opts: ["Direct", "From DC busses through two inverters.", "Engine driven", "Alternator"], ans: 1 },
+
+            // Page 13
+            { q: "When are the HOT EMER BUS and HOT MAIN BAT BUS connected to their respective batteries?", opts: ["During flight", "Always.", "On demand", "Manual"], ans: 1 },
+            { q: "When are the DC EMER BUS and DC ESS BUS connected to the DC BUS 1 and/or DC BUS 2?", opts: ["Selectively", "Always through BAT CHG and its respective HOT EMER or HOT MAIN BAT BUS.", "Intermittent", "Manual selection"], ans: 1 },
+            { q: "What does Inverter 1 normally supply?", opts: ["AC BUS 2", "AC BUS 1.", "Both AC busses", "DC busses"], ans: 1 },
+            { q: "What does the DC SVCE and UTILITY BUS SHED amber light indicate?", opts: ["Power loss", "At least one UTILITY Bus is disconnected from the associated main DC BUS.", "Fault detected", "Manual disconnect"], ans: 1 },
+            { q: "What does the EMER BAT CHG FAULT light indicate?", opts: ["Low charge", "Battery overheat or a failure of the charge contactor.", "Weak battery", "Cable fault"], ans: 1 },
+            { q: "What happens when an inverter fails and the INV light is illuminated?", opts: ["Backup active", "The associated AC BUS is lost.", "Automatic switching", "Partial service"], ans: 1 },
+            { q: "What happens to the busses powered by the MAIN BAT in case of MAIN BAT OVHT with MAIN BAT CHG FAULT light illuminated?", opts: ["Automatic tie", "The busses powered by that battery will be isolated.", "Continuous power", "Switches to backup"], ans: 1 },
+            { q: "What happens when the HOT MAIN BAT BUS is lost?", opts: ["Complete failure", "The DC ESS BAT BUS is powered by DC BUS 1.", "Automatic backup", "Manual restoration"], ans: 1 },
+            { q: "What occurs when the battery voltage is below 19.5V?", opts: ["Warning issued", "They will lose power.", "Automatic shutdown", "Restore attempt"], ans: 1 },
+            { q: "What indication is displayed on the inoperative engine's DC GEN push button?", opts: ["Red OFF", "White OFF if the push button is de-selected or Amber FAULT light if the push button is selected.", "Amber ON", "Red FAULT"], ans: 1 },
+            { q: "What should happen to the push button light when the GEN comes up to normal operating speed?", opts: ["Stays on", "The Amber FAULT light should extinguish.", "Turns green", "Cycles"], ans: 1 },
+            { q: "What does one illuminated arrow on the emergency supply indicate?", opts: ["Fault", "The supply of DC STBY BUS from DC EMER BUS, according to the illuminated arrow.", "Low power", "Manual mode"], ans: 1 },
+            { q: "When is the DC BTC automatically closed?", opts: ["At altitude", "In case of EXT PWR operation, Hotel Mode operation, or single engine operation.", "On demand", "Random"], ans: 1 },
+            { q: "What happens if both DC BUS 1 and DC BUS 2 supply is lost?", opts: ["Complete failure", "INV 1 is automatically supplied by HOT MAIN BAT BUS or by the HOT EMER BAT BUS in OVRD configuration.", "Manual backup", "No power"], ans: 1 },
+
+            // Page 14
+            { q: "Which C/AC busses cannot be supplied when on battery only?", opts: ["AC busses only", "DC1-DC2-AC1-AC2.", "DC busses only", "All busses"], ans: 1 },
+            { q: "What happens with Batteries only regarding AC BUS 1 and AC BUS 2?", opts: ["Both active", "They are never supplied.", "Partial power", "Switched"], ans: 1 },
+            { q: "What does the BAT selector toggle SW on OVRD mean?", opts: ["Battery test", "Each EMER, ESS, and STBY BUS are forced to be connected to their respective batteries, overriding all other logic and protection.", "Automatic mode", "Emergency mode"], ans: 1 },
+            { q: "When does the UNDV light illuminate amber?", opts: ["Normal operation", "When battery voltage is below 24V.", "After startup", "Random"], ans: 1 },
+            { q: "What does STBY BUS OVRD push button set on OVRD mean?", opts: ["Normal mode", "DC STBY BUS and AC STBY BUS through INV 1 are supplied from DC HOT EMER BUS.", "Emergency", "Backup only"], ans: 1 },
+            { q: "Can operation in Hotel mode provide power for the ACW system?", opts: ["Yes", "No.", "Partial", "Conditional"], ans: 1 },
+            { q: "How can the ACW SVCE BUS be powered by ACW EXT PWR?", opts: ["Manual button", "Directly from ACW EXT PWR, green AVAIL light illuminated, but the F/A panel ACW SVCE BUS push button light must be ON.", "Automatic", "Standby only"], ans: 1 },
+            { q: "What is the minimum NP to ensure ACW GEN operation?", opts: ["30%", "45% (range 341 - 488 Hz).", "60%", "75%"], ans: 1 },
+            { q: "How many BTC are used in the ACW system?", opts: ["One", "Two BTC and one BTC push button.", "Three", "Four"], ans: 1 },
+            { q: "What does the BTC in the ACW electrical system permit?", opts: ["Isolation", "If one ACW GEN fails, the other provides power to both ACW busses.", "Load sharing", "Backup"], ans: 1 },
+            { q: "What happens when ACW BTC is selected on ISOL while on ground with both engines running?", opts: ["Normal operation", "ACW BUS 1 is powered by EXT PWR, ACW BUS 2 is lost.", "Both busses active", "Automatic tie"], ans: 1 },
+            { q: "What light should be illuminated in the 4 GEN push buttons when all are selected and EXT PWR is supplying both ACW and DC?", opts: ["All lights", "Nothing.", "Selected only", "Test lights"], ans: 1 },
+            { q: "What happens if ACW GEN 1 fails during flight?", opts: ["Partial power", "All ACW busses remain supplied by ACW GEN 2.", "Loss of power", "Automatic mode"], ans: 1 },
+            { q: "What does the TRU supply DC power from during abnormal operations?", opts: ["Battery backup", "From an independent source.", "Engine power", "External only"], ans: 1 },
+
+            // Page 15
+            { q: "What does 'ELEC STBY UNDV' on the Alert Window mean?", opts: ["Manual mode", "DC STBY below 19.5V.", "Fault alert", "Test mode"], ans: 1 },
+            { q: "What does 'ELEC BAT DISCH' on the Alert Window indicate?", opts: ["Low power", "Main or Emergency battery discharge.", "Normal operation", "Standby"], ans: 1 },
+            { q: "What does 'ELEC CHG LOSS' on the Alert Window mean?", opts: ["Low charge", "Both batteries chargers fault.", "Power loss", "Fault reset"], ans: 1 },
+            { q: "What does 'ELEC DC SHED' on the alert window mean?", opts: ["DC loss", "One of the DC SVCE/UTLY 1 and 2 busses is shed.", "Normal operation", "Test mode"], ans: 1 },
+            { q: "How long will 100% oxygen for 3 crew last in case of smoke or noxious gas emission?", opts: ["5 minutes", "15 minutes.", "30 minutes", "60 minutes"], ans: 1 },
+            { q: "What is the nominal pressure of the Oxygen cylinder?", opts: ["1500 psi", "2180 psi.", "2500 psi", "3000 psi"], ans: 1 },
+            { q: "What does the oxygen mask Emergency selector do?", opts: ["Activates mask", "The oxygen mask Emergency selector activates pressurization of mask delivery flow when the N/100% rocker is at 100%.", "Closes mask", "Test mode"], ans: 1 },
+            { q: "When is Oxygen Lo PR activated?", opts: ["Always", "Oxygen Lo PR is activated at 50 psi in the low-pressure distribution circuit.", "Manual", "On demand"], ans: 1 },
+            { q: "What is the total number of portable extinguishers on-board?", opts: ["3", "The total number of portable extinguishers, Water and BCF, on-board is 5.", "4", "6"], ans: 1 },
+            { q: "Which agents are used in the two engine fire bottles?", opts: ["Water", "Freon or Halon, pressurized by nitrogen, are used in the two engine fire bottles.", "CO2", "Powder"], ans: 1 },
+            { q: "How many engine fire extinguishers are there?", opts: ["One", "There are two common fire extinguishers for both engines.", "Three", "One per engine"], ans: 1 },
+            { q: "How many fire detection loops does each engine have?", opts: ["One", "Each engine is equipped with two fire detection loops mounted in parallel.", "Three", "Four"], ans: 1 },
+            { q: "Which bus powers the engine fire detection systems?", opts: ["AC power", "The DC BUS 1 for the left engine and DC BUS 2 for the right engine powers the engine fire detection systems.", "Battery", "External"], ans: 1 },
+            { q: "What aural warning is given in case of a fire warning?", opts: ["Siren", "The aural warning given in case of a fire warning is a Bell.", "Horn", "Chime"], ans: 1 },
+
+            // Page 16-17
+            { q: "What happens when the 'squib test' push button is depressed?", opts: ["System test", "Discharge heads are tested and the two SQUIB lights illuminate white.", "Warning issued", "Reset"], ans: 1 },
+            { q: "What happens when the fire test switch is in fault position?", opts: ["System reset", "Only the related LOOP A and LOOP B FAULT light illuminates when the system is supplied by battery only.", "No indication", "Test mode"], ans: 1 },
+            { q: "What happens during the engine fire test on the ground with battery only?", opts: ["No indication", "ENGINE FIRE on the FWS and fire handle light, coupled with a red light on the associated CL, MASTER WARNING, and CRC in the CM1 loudspeaker.", "Warning only", "Silent test"], ans: 1 },
+            { q: "What is required to get the fire warning on?", opts: ["Single loop", "Both loops must be ON or one loop ON only, but the other at OFF.", "Selector position", "Manual"], ans: 1 },
+            { q: "What happens if only one loop senses a fire during the engine fire test?", opts: ["No alert", "The FAULT light illuminates in the associated push button and LOOP amber light, and the FWS activates.", "Full alert", "Nothing"], ans: 1 },
+            { q: "What happens if a fire is sensed with only one loop push button selected ON?", opts: ["No indication", "The FAULT light illuminates in the associated PUSH BUTTON and LOOP fault illuminates on the FWS.", "Warning only", "Test mode"], ans: 1 },
+            { q: "What warnings are initiated when an engine fire warning appears?", opts: ["Warning light", "MW and CRC, ENG FIRE on FWS, and Fire Handle red light are initiated.", "Aural only", "Silent"], ans: 1 },
+            { q: "When does the fuel shut off red light in the CL illuminate?", opts: ["Manual activation", "During a real fire when the CL is not at fuel shut off.", "At startup", "Never"], ans: 1 },
+            { q: "Is it possible to discharge a fire bottle without pulling the fire shut off handle?", opts: ["Yes", "No, it is not possible to discharge a fire bottle without pulling the fire shut off handle.", "Conditional", "Manual override"], ans: 1 },
+            { q: "What happens when the engine fire shut-off handle is pulled?", opts: ["Fuel cut only", "Propeller feathering, fuel engine LP valve closure, air bleed valve and HP valve closure, and squib light illumination occur.", "Engine shutdown", "Restart prevented"], ans: 1 },
+            { q: "What does the Amber DISCH light indicate?", opts: ["Discharge ready", "The Amber DISCH light indicates that the fire bottle is empty (depressurized).", "Fault alert", "Test mode"], ans: 1 },
+            { q: "What happens after Agent 1 discharge on the left engine?", opts: ["Both sides", "Agent 1 DISCH is activated on the left engine only.", "Both engines", "Random"], ans: 1 },
+            { q: "When does the red engine fire handle light extinguish?", opts: ["Manual reset", "The red engine fire handle light extinguishes when the temperature detected by the loops drops below the warning threshold.", "After discharge", "Time based"], ans: 1 },
+            { q: "Where are smoke detectors provided?", opts: ["Cockpit only", "Smoke detectors are provided in the cockpit, cabin, and cargo compartment.", "Cabin only", "Cargo only"], ans: 1 },
+
+            // Page 18
+            { q: "In flight roll control is achieved by:", opts: ["Ailerons only", "Two ailerons.", "Rudder control", "Thrust"], ans: 1 },
+            { q: "Roll control operation is achieved by actuating:", opts: ["Spoilers only", "Mechanically the ailerons and hydraulically the spoilers.", "Trim tabs", "Flaps"], ans: 1 },
+            { q: "Roll control trim is performed using:", opts: ["One aileron tab", "Both left and right aileron tabs.", "Trim wheel", "Autopilot"], ans: 1 },
+            { q: "SPLR light illuminates to indicate:", opts: ["Spoiler extended", "Associated spoiler has failed.", "Normal operation", "Spoiler deployed"], ans: 1 },
+            { q: "Each of the two roll spoilers have a hydraulic actuator which is controlled:", opts: ["Electrically", "Mechanically, by the related aileron linkage.", "Independently", "Manually"], ans: 1 },
+            { q: "Spoilers start to move after a given aileron deflection (2.5 degrees):", opts: ["Immediately", "At low speed (after landing gear extension).", "At high speed", "Never"], ans: 1 },
+            { q: "If both pitch trim rocking switches are used simultaneously in opposite directions:", opts: ["Continues", "Trim action stops.", "Cycles", "Maximum rate"], ans: 1 },
+            { q: "During standby pitch trim control actuation:", opts: ["Autopilot active", "Normal control is isolated and autopilot disengages.", "Normal active", "Dual control"], ans: 1 },
+            { q: "When standby pitch trim is set to neutral (released after use):", opts: ["Restoration", "Normal control and autopilot are lost.", "Normal returns", "Autopilot engages"], ans: 1 },
+            { q: "If one control column is jammed:", opts: ["Dual control fails", "Pitch uncoupling procedure allows the other channel to operate one elevator.", "Both locked", "Manual mode"], ans: 1 },
+            { q: "In the Yaw axis, pilot inputs act directly on the:", opts: ["Trim tab", "Rudder.", "Nosewheel", "Ailerons"], ans: 1 },
+            { q: "Yaw spring tab function reduces pilot's effort:", opts: ["Takeoff only", "At any speed.", "Low speed only", "High speed only"], ans: 1 },
+            { q: "How is the yaw trim action controlled and operated?", opts: ["Manual control", "Electrically controlled and hydraulically operated.", "Pneumatic", "Automatic"], ans: 1 },
+            { q: "How does the rudder trim work?", opts: ["Trim only", "Rudder moves but the control neutral stays in position.", "Both move", "Neutral shifts"], ans: 1 },
+
+            // Page 19
+            { q: "The yaw trim position indicator shows:", opts: ["Rudder angle", "Units of trim motor displacement from neutral.", "Pressure value", "Flow rate"], ans: 1 },
+            { q: "FLAP UNLK alert on the FWS window means that:", opts: ["Flaps unlocked", "The actual flap position disagrees with the position of the flap selector.", "Flap motor fault", "Flap actuator"], ans: 1 },
+            { q: "The gust lock system acts on:", opts: ["Flaps", "Roll and pitch control.", "Landing gear", "Spoilers"], ans: 1 },
+            { q: "Stick shaker is activated by:", opts: ["Manual trigger", "Two stick shaker actuators, one attached directly to the Captain's control column and one attached directly to the F/O's control column.", "Autopilot", "Pressure change"], ans: 1 },
+            { q: "The stick pusher actuator is attached to the linkage of:", opts: ["Rudder column", "Captain and F/O's control columns.", "Trim system", "Autopilot"], ans: 1 },
+            { q: "The flaps are controlled by actuators powered by the blue hydraulic system, how is the flap hydraulic valve block controlled?", opts: ["Manually", "Electrically by DC BUS 1.", "Pneumatically", "Hydraulically"], ans: 1 },
+            { q: "What is the meaning of the blue EXT flag on the flaps position indicator?", opts: ["Extended position", "With flaps extended, it indicates a hydraulic leak.", "Normal operation", "Test mode"], ans: 1 },
+            { q: "How is Flaps Asymmetry detected?", opts: ["Visual indication", "When a flap asymmetry angle of 6.7° is detected the FLAPS ASSYM light illuminates. No CCAS alert is given.", "Manually checked", "At 10°"], ans: 1 },
+            { q: "What happens when flaps asymmetry occurs?", opts: ["Automatic retract", "Electrical power to the flap control system is isolated and flaps are locked in position.", "Warning only", "Continues"], ans: 1 },
+            { q: "Flap unlock is displayed on the alert window of the flight warning system and a warning alert is triggered when:", opts: ["Flaps move", "Flaps retract untimely more than 4° when flaps are selected at Flap 15 or more.", "At Flap 0", "On extension"], ans: 1 },
+            { q: "A TLU (Travel Limitation Unit) is fitted to the aircraft in order to:", opts: ["Limit flaps", "Limit rudder pedal travel in order to prevent damaging the rudder when flying at high speed.", "Limit elevator", "Limit ailerons"], ans: 1 },
+            { q: "The TLU automatically changes from LO SPD to HI SPD when:", opts: ["Manual selection", "The aircraft accelerates through 180KIAS.", "On command", "At altitude"], ans: 1 },
+            { q: "The TLU flight control switch:", opts: ["Automatic only", "May be selected manually to either LO speed or HI speed in the event of automatic control failure.", "Fixed position", "Disabled"], ans: 1 },
+            { q: "FLAPS ASYM on the Alert Window of the Flight Warning System means that:", opts: ["Normal asym", "Asymmetry of more than 6.7° between left and right flaps, flaps are frozen in position.", "Less than 6.7°", "Retracting"], ans: 1 },
+
+            // Page 20
+            { q: "PITCH DISC on the Alert Window of the Flight Warning System means that:", opts: ["Normal pitch", "Elevators are uncoupled.", "Pitch servo", "Control active"], ans: 1 },
+            { q: "FLT CTL PUSHER on the Alert Window of the Flight Warning System means that:", opts: ["Pusher active", "Stick pusher failure.", "Normal mode", "Test alert"], ans: 1 },
+            { q: "What do the two air data computers (ADC) compute?", opts: ["Navigation data", "The two ADCs compute pressure altitude, vertical speed, indicated air speed (IAS), computed air speed (CAS), true air speed (TAS), ground speed (GS), and standard air temperature (ISA).", "Engine data", "Weather info"], ans: 1 },
+            { q: "How is an ADC 1 failure detected?", opts: ["No indication", "An ADC 1 failure is detected by red flags on CPT flight instruments and a Master Caution.", "Silent failure", "Manual only"], ans: 1 },
+            { q: "How is an ADC 2 failure detected?", opts: ["No indication", "An ADC 2 failure is detected by red flags on FO flight instruments and AFCS failure (AP disconnection).", "Silent failure", "Manual"], ans: 1 },
+            { q: "What should be done in case of ADC failure?", opts: ["Restart system", "In case of ADC failure, select the other ADC and compare valid ADC with the standby instruments.", "Manual mode", "Continue flight"], ans: 1 },
+            { q: "What happens when the aircraft is on batteries only?", opts: ["Both active", "Only ADC 1 is supplied when the aircraft is on batteries only.", "Both inactive", "ADC 2 only"], ans: 1 },
+            { q: "What data do the two AHRS (Attitude Heading Reference System) provide?", opts: ["Navigation only", "The two AHRS provide pitch, roll, heading, ground speed, and ILS information.", "Altitude only", "Speed only"], ans: 1 },
+            { q: "When do the two AHRS start their alignment period on the ground?", opts: ["Manual start", "The two AHRS start their alignment period automatically provided there is DC EXT PWR or aircraft batteries selected ON.", "After takeoff", "Random"], ans: 1 },
+            { q: "What action should be taken when the ERCT/FAIL warning illuminates on one AHRS?", opts: ["Continue flight", "The crew must turn OFF this equipment and switch to the remaining system.", "Manual mode", "Ignore"], ans: 1 },
+            { q: "What information is displayed on each of the DU's from Left (DU1) to Right (DU5) in normal conditions?", opts: ["Identical", "The information displayed is PFD - ND - EWD - PFD - ND.", "All same", "Mixed"], ans: 1 },
+            { q: "What does AHRS 2 supply?", opts: ["Captain only", "AHRS 2 supplies SGU 2, FO RMI, and ASCB BUS.", "Both pilots", "Autopilot"], ans: 1 },
+            { q: "What happens when there is an AHRS failure?", opts: ["No indication", "In case of AHRS failure, a single chime is heard, and HDG FAIL and ATT FAIL red messages appear on the associated EHSI and EADI.", "Silent alert", "Auto recovery"], ans: 1 },
+            { q: "What action should be performed if an AHRS failure is encountered?", opts: ["Manual mode", "The pilot on the side of the failed AHRS should select the opposite ATT/HDG reference.", "Continue flight", "Restart"], ans: 1 },
+
+            // Page 21
+            { q: "What does HDG Disagree on the alert window mean?", opts: ["Small difference", "HDG Disagree indicates a disagreement of at least 6° between both AHRS.", "Normal variance", "Error condition"], ans: 1 },
+            { q: "What does IAS DISAGREE on the alert window mean?", opts: ["Small difference", "IAS DISAGREE means there is at least a 10 kt difference between both ADCs.", "Normal variance", "Speed error"], ans: 1 },
+            { q: "What does ALT DISAGREE on the alert window mean?", opts: ["Small variance", "ALT DISAGREE indicates a disagreement of approximately 100 feet between both ADCs.", "Normal difference", "Altitude error"], ans: 1 },
+            { q: "What does ADC on the alert window indicate?", opts: ["Normal op", "ADC on the alert window means that one ADC is faulted.", "Warning alert", "Test mode"], ans: 1 },
+            { q: "What does AHRS on the alert window indicate?", opts: ["Normal op", "AHRS on the alert window means that one AHRS is faulted.", "Warning alert", "Test mode"], ans: 1 },
+            { q: "What does RMS on the alert window indicate?", opts: ["Normal op", "RMS on the alert window means that one RMI system is faulted.", "Warning alert", "Test mode"], ans: 1 },
+            { q: "What does VHF EMITTING on the alert window mean?", opts: ["Normal mode", "VHF EMITTING means that one VHF is emitting for more than 29 seconds.", "Short emission", "Test alert"], ans: 1 },
+            { q: "What does FWS SGL CH on the alert window mean?", opts: ["Multiple channels", "FWS SGL CH indicates a single channel detected on PEC.", "Normal op", "Test mode"], ans: 1 },
+            { q: "What does DU TEMP HI on the alert window mean?", opts: ["Normal temp", "DU TEMP HI means that the DU temperature is above 70°C after brightness reduction.", "Low temp", "Warning only"], ans: 1 },
+            { q: "What does MAINT PANEL on the alert window mean?", opts: ["Open panel", "MAINT PANEL means that the maintenance panel sensed open or engineering action is needed.", "Closed normally", "Test mode"], ans: 1 },
+            { q: "What does BAD CONF/CONF UPDATED on the alert window mean?", opts: ["Configuration OK", "BAD CONF/CONF UPDATED indicates that the Take Off configuration test has failed.", "Normal state", "Updated config"], ans: 1 },
+            { q: "What does CONFIG red on the alert window mean?", opts: ["Configuration OK", "CONFIG red indicates that the Take Off configuration test has detected an abnormal configuration.", "Normal state", "Alert only"], ans: 1 },
+            { q: "What happens to Flight Recorder operations when the aircraft is on the ground with EXT PWR?", opts: ["Always running", "The Flight Recorder can be energized by selecting the recorder push button ON and de-energized by selecting the RESET push button.", "Battery power", "Manual mode"], ans: 1 },
+            { q: "What happens to the Crew Voice Recorder operations?", opts: ["Continuous", "The last 30 minutes of recordings are retained, and all recordings may be erased by pressing the ERASE push button provided the aircraft is on the ground and the parking brake is set ON.", "Reset on power", "Manual only"], ans: 1 },
+
+            // Page 22
+            { q: "What power source supplies the refuel/defuel panel?", opts: ["Battery", "The refuel/defuel panel is supplied by the DC SVCE BUS.", "APU", "External"], ans: 1 },
+            { q: "With BAT switched off and no EXT PWR, what is required to power the refuel/defuel system?", opts: ["External connection", "To power the refuel/defuel system, the BAT switch must be turned ON.", "APU start", "Manual switch"], ans: 1 },
+            { q: "If valid EXT PWR is plugged in (AVAIL light illuminated) what is necessary?", opts: ["Automatic", "It is necessary to select EXT PWR ON before the refuel/defuel panel can be powered from EXT PWR.", "No action", "Manual link"], ans: 1 },
+            { q: "FUEL 2 TEMP HIGH on the alert window of the FWS means that:", opts: ["Temp normal", "Fuel temperature is above 121 ºC.", "Below limit", "Warning test"], ans: 1 },
+            { q: "With the refuel/defuel panel mode selector switch at refuel position, how are the refuel valves operated?", opts: ["Manually", "The refuel valves are operated by automatic logic if the refuel valve switches are set on NORM.", "Automatically only", "Semi-automatic"], ans: 1 },
+            { q: "FQI - Fuel Quantity Indication System", opts: ["Multiple channels", "The left and right fuel quantity indicating channels are independent, and in level attitude, the accuracy is +/- 1% near ZERO and +/- 3% at FULL.", "Single channel", "Average only"], ans: 1 },
+            { q: "How many magnetic level indicators are located on the bottom of each fuel tank?", opts: ["One", "There are two magnetic level indicators located on the bottom of each fuel tank.", "Three", "Four"], ans: 1 },
+            { q: "FUEL MISMATCH on the FWS means that:", opts: ["Fuel imbalance", "A difference of more than 200 kg is detected between the FMS and the fuel quantity indicator during any phase of flight.", "Below limit", "Normal variance"], ans: 1 },
+            { q: "The electric pump and the jet pump are located:", opts: ["Separate tanks", "Both are located in a feeder compartment to protect against uncovering pumps in case of vertical or lateral loads.", "Main tank", "Randomly"], ans: 1 },
+            { q: "Due to fuel pump non-return valves:", opts: ["Normal flow", "Neither the electric pump nor the jet pump can circulate fuel in reverse direction through the other.", "Bidirectional", "Unrestricted"], ans: 1 },
+            { q: "In normal operation, the electric pump in each tank is used only to:", opts: ["Supply engine", "Pressurise the jet pump, which pressurises the fuel system for engine start and subsequent normal operation.", "Pressurize tank", "Emergency only"], ans: 1 },
+            { q: "The two fuel pump push button control which of the following:", opts: ["Fuel flow", "They control automatic starting and stopping functions of the related electric pump when selected on.", "Pump speed", "Selector"], ans: 1 },
+            { q: "The electrical pump normally runs anytime the related pump push button is selected on and:", opts: ["Constant", "The jet pump pressure drops below 5psi (350mb).", "Above limit", "On demand"], ans: 1 },
+            { q: "When do the Jet pumps motive flow valves open?", opts: ["Always", "Anytime the related pump push button is selected on, and pressure from the HMU is sufficient to open it.", "Manual", "Selectively"], ans: 1 },
+
+            // Page 23
+            { q: "The jet pump is activated by:", opts: ["Electric only", "HP fuel from the electrical pump or HP fuel from the engine HMU.", "Manual", "Selective"], ans: 1 },
+            { q: "At take-off power, how many engines can one electric pump supply?", opts: ["Both", "One electric pump can supply only one engine.", "Selectable", "Dynamic"], ans: 1 },
+            { q: "When the fuel pump push button is selected off:", opts: ["Continues", "The electrical pump is de-activated and the OFF light illuminates white on the push button.", "Intermittent", "Stops"], ans: 1 },
+            { q: "The first indication of a jet pump failure is:", opts: ["Low pressure", "Illumination of FEED LO PR and FWS activation.", "Acoustic alert", "Temperature rise"], ans: 1 },
+            { q: "FUEL UNBALANCED on the alert window of the FWS means that:", opts: ["Imbalance alert", "A difference of more than 200 kg has been detected between the FMS and the Fuel Quantity Indicator (FQI).", "Below threshold", "Selective"], ans: 1 },
+            { q: "To feed engine No.1 with tank No.2, LH and RH fuel pumps running, you must:", opts: ["Manual feed", "Select engine no.1 fuel pump push button on and open the cross-feed valve.", "Tank selector", "Crossfeed auto"], ans: 1 },
+            { q: "During cross-feed operation and after cross feed 'open' and pump push button 'off' in the side with least fuel, how many pumps are running?", opts: ["Both", "One, the jet pump in the side with the most fuel.", "Alternating", "None"], ans: 1 },
+            { q: "If no green flow bar is visible and the XFEED push button is selected, what does it mean?", opts: ["System active", "The cross feed valve is closed.", "Valve open", "Normal"], ans: 1 },
+            { q: "How is the LP valve at the outlet of each tank controlled?", opts: ["Manual", "The LP valve is controlled by the fuel system logic based on operational requirements.", "Fixed", "Selective"], ans: 1 },
+            { q: "What does FUEL LO LVL on the FWS indicate?", opts: ["Fuel warning", "It indicates that the fuel quantity is lower than 160kg, and the fuel cross feed opens automatically or the corresponding electrical pump runs automatically.", "Minimum fuel", "Alert threshold"], ans: 1 },
+            { q: "What does ENG FUEL CLOG on the FWS mean?", opts: ["Blockage", "It indicates a fuel pressure loss in the HP pump fuel filter or the jet pump, with differential pressure above 25 psi.", "Plug alert", "Filter warning"], ans: 1 },
+            { q: "How is each hydraulic system mainly pressurized?", opts: ["Electrically", "Each hydraulic system is mainly pressurized by an engine driven pump.", "Manually", "Externally"], ans: 1 },
+            { q: "Where is the auxiliary DC electrical pump located?", opts: ["Green system", "The auxiliary DC electrical pump is located in the BLUE hydraulic system.", "Both systems", "External"], ans: 1 },
+            { q: "What is the normal hydraulic pressure of the BLUE and GREEN hydraulic systems?", opts: ["2000 psi", "The normal hydraulic pressure is 3000 psi.", "2500 psi", "3500 psi"], ans: 1 },
+
+            // Page 24
+            { q: "Where is the hydraulic fluid contained?", opts: ["Single tank", "The hydraulic fluid is contained in two separate tanks: BLUE in the LH landing gear fairing and GREEN in the RH landing gear fairing.", "Main reservoir", "Distributed"], ans: 1 },
+            { q: "What is the normal accumulator pre-charge pressure on the three gas gauges near the left main gear bay?", opts: ["1000 psi", "The normal accumulator pre-charge pressure is 1500 psi.", "2000 psi", "2500 psi"], ans: 1 },
+            { q: "What are the users of the BLUE hydraulic system?", opts: ["Landing gear", "The users are nose wheel steering, flaps, spoilers, and propeller brake.", "Brakes", "Mixed"], ans: 1 },
+            { q: "What are the users of the GREEN hydraulic system?", opts: ["Flaps and spoilers", "The users are landing gear and normal brake.", "Steering only", "Propeller"], ans: 1 },
+            { q: "What does HYD GREEN LO PR on the alert window mean?", opts: ["Normal pressure", "It means that the green pump delivery pressure is below 1,500 psi.", "High pressure", "Alert reset"], ans: 1 },
+            { q: "What happens when the AUX PUMP push button is pressed on the ground?", opts: ["Continuous", "It energizes the AUX PUMP, providing the BAT SW is ON.", "Momentary", "Timing"], ans: 1 },
+            { q: "What main pumps are activated when the right engine is running at max rpm?", opts: ["Green only", "Both BLUE and GREEN main pumps are activated.", "Blue only", "Selective"], ans: 1 },
+            { q: "What happens when the propeller brake locking sequence is initiated?", opts: ["Continuous", "The AUX PUMP runs automatically for two minutes.", "Manual", "Test"], ans: 1 },
+            { q: "When does the AUX hydraulic pump run automatically?", opts: ["Always", "It runs automatically in flight with low pressure in the BLUE system, with the landing gear lever selected down, and at least one engine running.", "Manual only", "On demand"], ans: 1 },
+            { q: "What does a LOW PRESSURE amber light in the GREEN hydraulic pump push button indicate?", opts: ["Valve issue", "It indicates that the cross-feed valve automatically opens.", "Normal state", "Manual mode"], ans: 1 },
+            { q: "What occurs in case of a BLUE hydraulic main pump LOW PRESSURE alert?", opts: ["System resets", "The AUX PUMP takes over automatically if GREEN pressure is not available.", "Manual mode", "Alarm only"], ans: 1 },
+            { q: "What does cross-feed allow when the BLUE pump is off and the GREEN pump is running?", opts: ["Green only", "It allows pressurization of the BLUE system, except for the braking accumulator.", "Blue only", "Mixed"], ans: 1 },
+            { q: "What does the OVHT alert indicate?", opts: ["Pressure high", "It indicates an overheat anywhere in the hydraulic system.", "Temp warning", "System fault"], ans: 1 },
+            { q: "What happens in case of a LOW LVL alert?", opts: ["Normal ops", "The CROSS-FEED VALVE is automatically closed and inhibited.", "Manual mode", "Alert only"], ans: 1 }
+        ];
+
+        let currentQuestion = 0;
+        let answeredQuestions = new Array(questions.length).fill(false);
+        let correctAnswersTrack = new Array(questions.length).fill(null);
+
+        function renderNav() {
+            const navContainer = document.getElementById('nav-circles');
+            navContainer.innerHTML = '';
+            
+            for (let i = 0; i < questions.length; i++) {
+                const circle = document.createElement('div');
+                circle.className = 'nav-circle';
+                
+                if (i === currentQuestion) {
+                    circle.classList.add('active');
+                } else if (correctAnswersTrack[i] === true) {
+                    circle.classList.add('answered-correct');
+                } else if (correctAnswersTrack[i] === false) {
+                    circle.classList.add('answered-wrong');
+                }
+
+                circle.innerText = i + 1;
+                circle.onclick = () => jumpToQuestion(i);
+                navContainer.appendChild(circle);
+            }
+            
+            const activeCircle = navContainer.children[currentQuestion];
+            if (activeCircle) {
+                activeCircle.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        function jumpToQuestion(index) {
+            currentQuestion = index;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const qData = questions[currentQuestion];
+            const total = questions.length;
+            
+            document.getElementById('question-counter').innerText = `${currentQuestion + 1} / ${total}`;
+            document.getElementById('question-number').innerText = `Question ${currentQuestion + 1}`;
+            document.getElementById('question-text').innerText = qData.q;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            if (answeredQuestions[currentQuestion]) {
+                optionsContainer.classList.add('disabled');
+            } else {
+                optionsContainer.classList.remove('disabled');
+            }
+            
+            qData.opts.forEach((opt, index) => {
+                const div = document.createElement('div');
+                div.className = 'option';
+                div.innerText = opt;
+                div.dataset.index = index;
+                
+                if (answeredQuestions[currentQuestion]) {
+                    if (index === qData.ans) {
+                        div.classList.add('correct');
+                    } else if (correctAnswersTrack[currentQuestion] === false && index === correctAnswersTrack[currentQuestion]) {
+                        div.classList.add('incorrect');
+                    }
+                }
+
+                div.onclick = () => selectOption(div, index, qData.ans);
+                optionsContainer.appendChild(div);
+            });
+
+            updateProgress();
+            renderNav();
+            
+            // Update next button
+            const nextBtn = document.getElementById('next-btn');
+            if (currentQuestion === questions.length - 1) {
+                nextBtn.textContent = 'Finish ✓';
+            } else {
+                nextBtn.textContent = 'Next →';
+            }
+        }
+
+        function selectOption(element, selectedIndex, correctIndex) {
+            const optionsContainer = document.getElementById('options-container');
+            if (optionsContainer.classList.contains('disabled')) return;
+            
+            optionsContainer.classList.add('disabled');
+            answeredQuestions[currentQuestion] = true;
+            
+            const isCorrect = (selectedIndex === correctIndex);
+            correctAnswersTrack[currentQuestion] = isCorrect;
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+            } else {
+                element.classList.add('incorrect');
+                const options = optionsContainer.querySelectorAll('.option');
+                options.forEach(opt => {
+                    if (parseInt(opt.dataset.index) === correctIndex) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+            
+            updateProgress();
+            renderNav();
+            saveUserProgress();
+        }
+
+        function updateProgress() {
+            const answeredCount = answeredQuestions.filter(Boolean).length;
+            const total = questions.length;
+            const percent = Math.round((answeredCount / total) * 100);
+            
+            document.getElementById('progress-bar').style.width = `${percent}%`;
+            document.getElementById('answered-count').innerText = answeredCount;
+            document.getElementById('score-header').innerText = percent + '%';
+            
+            const correctCount = correctAnswersTrack.filter(x => x === true).length;
+            const score = Math.round((correctCount / answeredCount) * 100) || 0;
+            document.getElementById('score-header').innerText = answeredCount > 0 ? score + '%' : '0%';
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                showCompletion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function showCompletion() {
+            const correctCount = correctAnswersTrack.filter(x => x === true).length;
+            const totalAnswered = answeredQuestions.filter(Boolean).length;
+            const finalScore = Math.round((correctCount / totalAnswered) * 100) || 0;
+            
+            document.getElementById('question-content').style.display = 'none';
+            document.getElementById('completion-screen').classList.add('show');
+            document.getElementById('final-score').innerText = finalScore + '%';
+        }
+
+        function resetQuiz() {
+            saveUserProgress();
+            logout();
+        }
+
+        // Initialize - show login screen
+        window.addEventListener('load', function() {
+            document.getElementById('quiz-container').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
