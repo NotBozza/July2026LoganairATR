@@ -36,17 +36,50 @@
             justify-content: center;
             min-height: 100vh;
             padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('./ATR72.JPG');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.6;
+            z-index: 0;
+        }
+        
+        .login-screen::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+            z-index: 1;
         }
         
         .login-card {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
             padding: 50px 40px;
             max-width: 500px;
             width: 100%;
             text-align: center;
             animation: slideUp 0.5s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 2;
         }
         
         @keyframes slideUp {
@@ -61,67 +94,74 @@
         }
         
         .login-icon {
-            font-size: 64px;
+            font-size: 56px;
             margin-bottom: 20px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .login-title {
             font-size: 32px;
             font-weight: 700;
             color: var(--text-main);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
         
         .login-subtitle {
-            font-size: 16px;
+            font-size: 14px;
             color: var(--text-secondary);
             margin-bottom: 40px;
-            line-height: 1.5;
+            line-height: 1.6;
+            font-weight: 500;
         }
         
         .username-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 24px;
+            gap: 12px;
+            margin-bottom: 28px;
         }
         
         .username-btn {
-            padding: 20px;
+            padding: 16px 12px;
             border: 2px solid var(--border);
             background: white;
-            border-radius: 12px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             transition: all 0.3s ease;
             color: var(--text-main);
         }
         
         .username-btn:hover {
-            border-color: var(--primary-red);
-            background: linear-gradient(135deg, rgba(255, 59, 59, 0.05) 0%, rgba(255, 82, 82, 0.05) 100%);
-            transform: translateY(-2px);
+            border-color: #0066cc;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, rgba(102, 126, 234, 0.05) 100%);
+            transform: translateY(-1px);
         }
         
         .username-btn.selected {
             border-color: var(--primary-red);
             background: linear-gradient(135deg, var(--primary-red) 0%, #ff5252 100%);
             color: white;
-            box-shadow: 0 8px 20px rgba(255, 59, 59, 0.4);
+            box-shadow: 0 6px 16px rgba(255, 59, 59, 0.3);
         }
         
         .start-btn {
             width: 100%;
-            padding: 14px;
+            padding: 13px;
             background: linear-gradient(135deg, var(--primary-red) 0%, #ff5252 100%);
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            letter-spacing: 0.3px;
         }
         
         .start-btn:hover:not(:disabled) {
@@ -136,10 +176,10 @@
         
         .reset-btn-login {
             width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
-            color: white;
-            border: none;
+            padding: 11px;
+            background: #f5f5f5;
+            color: var(--text-main);
+            border: 1px solid var(--border);
             border-radius: 8px;
             font-size: 14px;
             font-weight: 600;
@@ -149,8 +189,9 @@
         }
         
         .reset-btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(255, 107, 107, 0.4);
+            background: #eeeeee;
+            border-color: var(--primary-red);
+            color: var(--primary-red);
         }
         
         .reset-btn-login:active {
@@ -660,35 +701,35 @@
     <!-- Login Screen -->
     <div class="login-screen" id="login-screen">
         <div class="login-card">
-            <div class="login-icon">✈️</div>
+            <div class="login-icon">ATR</div>
             <h1 class="login-title">ATR72-600</h1>
-            <p class="login-subtitle">Type Rating Quiz<br>Select your profile to continue</p>
+            <p class="login-subtitle">Type Rating Quiz<br>Professional Training Assessment</p>
             
             <div class="username-grid" id="username-grid">
-                <button class="username-btn" onclick="selectUser('Ash')">👨‍✈️ Ash</button>
-                <button class="username-btn" onclick="selectUser('Anu')">👨‍✈️ Anu</button>
-                <button class="username-btn" onclick="selectUser('Michael')">👨‍✈️ Michael</button>
-                <button class="username-btn" onclick="selectUser('Jayden')">👨‍✈️ Jayden</button>
+                <button class="username-btn" onclick="selectUser('Ash')">Ash</button>
+                <button class="username-btn" onclick="selectUser('Anu')">Anu</button>
+                <button class="username-btn" onclick="selectUser('Michael')">Michael</button>
+                <button class="username-btn" onclick="selectUser('Jayden')">Jayden</button>
             </div>
             
             <div id="user-stats-box" class="user-stats-box hidden">
                 <div class="user-stat">
-                    <span class="user-stat-label">Questions Answered:</span>
+                    <span class="user-stat-label">Questions Answered</span>
                     <span class="user-stat-value" id="login-answered">0</span>
                 </div>
                 <div class="user-stat">
-                    <span class="user-stat-label">Correct Answers:</span>
+                    <span class="user-stat-label">Correct Answers</span>
                     <span class="user-stat-value" id="login-correct">0</span>
                 </div>
                 <div class="user-stat">
-                    <span class="user-stat-label">Current Score:</span>
+                    <span class="user-stat-label">Current Score</span>
                     <span class="user-stat-value" id="login-score">0%</span>
                 </div>
             </div>
             
             <button class="start-btn" id="start-btn" onclick="startQuiz()" disabled>Start Quiz</button>
             
-            <button class="reset-btn-login" id="reset-btn-login" onclick="resetUserProgress()" style="display: none;">🔄 Reset Progress</button>
+            <button class="reset-btn-login" id="reset-btn-login" onclick="resetUserProgress()" style="display: none;">Reset Progress</button>
             
             <div class="logout-section" id="logout-section" style="display: none;">
                 <button class="logout-btn" onclick="backToLogin()">← Choose Different User</button>
@@ -699,12 +740,12 @@
     <header id="header" style="display: none;">
         <div class="header-content">
             <div class="logo">
-                <span class="icon">✈️</span>
+                <span class="icon">ATR</span>
                 ATR72-600 Type Rating
             </div>
             <div class="user-info" id="user-info" style="display: none;">
-                <div class="current-user">👤 <span id="header-username">User</span></div>
-                <button class="logout-header-btn" onclick="resetProgressFromQuiz()">🔄 Reset</button>
+                <div class="current-user"><span id="header-username">User</span></div>
+                <button class="logout-header-btn" onclick="resetProgressFromQuiz()">Reset</button>
                 <button class="logout-header-btn" onclick="logout()">Logout</button>
             </div>
             <div class="header-stats">
@@ -749,19 +790,19 @@
 
                 <!-- Buttons -->
                 <div class="button-section">
-                    <button class="btn btn-secondary" onclick="prevQuestion()">← Previous</button>
-                    <button class="btn btn-primary" onclick="nextQuestion()" id="next-btn">Next →</button>
+                    <button class="btn btn-secondary" onclick="prevQuestion()">Previous</button>
+                    <button class="btn btn-primary" onclick="nextQuestion()" id="next-btn">Next</button>
                 </div>
             </div>
 
             <!-- Completion Screen -->
             <div class="completion-screen" id="completion-screen">
-                <div class="completion-icon">🎉</div>
-                <div class="completion-title">Quiz Complete!</div>
-                <div class="completion-text">You've finished all 465 questions</div>
+                <div class="completion-icon">✓</div>
+                <div class="completion-title">Assessment Complete</div>
+                <div class="completion-text">You have completed all 465 questions</div>
                 <div class="score-display" id="final-score">0%</div>
-                <div class="score-label">Correct Answers</div>
-                <button class="reset-btn" onclick="resetQuiz()">Start Over</button>
+                <div class="score-label">Final Score</div>
+                <button class="reset-btn" onclick="resetQuiz()">Begin Again</button>
             </div>
         </div>
     </div>
@@ -806,7 +847,7 @@
         function resetUserProgress() {
             if (!currentUser) return;
             
-            const confirmReset = confirm(`Are you sure you want to reset all progress for ${currentUser}?\n\nThis action cannot be undone.`);
+            const confirmReset = confirm(`Reset all progress for ${currentUser}?\n\nThis action cannot be undone.`);
             if (!confirmReset) return;
             
             // Delete from localStorage
@@ -822,7 +863,7 @@
             document.getElementById('reset-btn-login').style.display = 'none';
             
             // Show confirmation
-            alert(`✅ Progress completely reset for ${currentUser}!\n\nYou can now start fresh.`);
+            alert(`Progress reset for ${currentUser}.\n\nYou can now start fresh.`);
         }
         
         function startQuiz() {
@@ -839,7 +880,7 @@
         function resetProgressFromQuiz() {
             if (!currentUser) return;
             
-            const confirmReset = confirm(`Are you sure you want to reset all progress for ${currentUser}?\n\nYou will return to the login screen.`);
+            const confirmReset = confirm(`Reset all progress for ${currentUser}?\n\nYou will return to the login screen.`);
             if (!confirmReset) return;
             
             // Delete from localStorage
@@ -869,7 +910,7 @@
             document.getElementById('logout-section').style.display = 'none';
             
             // Show confirmation
-            alert(`✅ Progress completely reset for ${resetUsername}!\n\nYou can now start fresh.`);
+            alert(`Progress reset for ${resetUsername}.\n\nYou can now start fresh.`);
         }
         
         function logout() {
